@@ -4,6 +4,7 @@ import '../../details/details_screen.dart';
 import '../../saved-recipes/save_recipe_manager.dart';
 
 class WeeklyRecipeTile extends StatefulWidget {
+  //
   final Recipe recipe;
 
   const WeeklyRecipeTile({
