@@ -1,31 +1,31 @@
 import '../../domain/entities/recipes.dart';
 
-class RecipeModel extends Recipe {
+class RecipeModel {
+  final int id;
+  final String title;
+  final String image;
+
   RecipeModel({
-    required super.id,
-    required super.title,
-    required super.image,
-    required super.author,
-    required super.rating,
+    required this.id,
+    required this.title,
+    required this.image,
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
-      id: json['id'],
-      title: json['title'],
-      image: json['image'],
-      author: json['author'] ?? "Unknown",
-      rating: (json['rating'] as num).toDouble(),
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      image: json['image'] ?? '',
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      "id": id,
-      "title": title,
-      "image": image,
-      "author": author,
-      "rating": rating,
-    };
+  Recipe toEntity() {
+    return Recipe(
+      id: id,
+      title: title,
+      image: image,
+      author: "Unknown",   // default value
+      rating: 0.0,         // default value
+    );
   }
 }
