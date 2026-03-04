@@ -20,7 +20,7 @@
 - Provider (State Management)
 - HTTP Networking
 
-   ## 🛠️ Tech Stack
+   ## 🔮 Future work
 
 - 🔐 Add secure user authentication (Login & Registration)
 - ⭐ Recipe rating and review system
