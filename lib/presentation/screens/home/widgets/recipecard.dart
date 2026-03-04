@@ -71,14 +71,21 @@ class RecipeCard extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
-              fontWeight: FontWeight.w600),
+            fontWeight: FontWeight.w600,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
           "By: $author",
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
-              fontSize: 12, color: Colors.grey),
+            fontSize: 12,
+            color: Colors.grey,
+          ),
         ),
       ],
     );

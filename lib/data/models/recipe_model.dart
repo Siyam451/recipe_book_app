@@ -24,8 +24,8 @@ class RecipeModel {
       id: id,
       title: title,
       image: image,
-      author: "Unknown",   // default value
-      rating: 0.0,         // default value
+      author: "Parvin Akther",   // default value
+      rating: 4.5,         // default value
     );
   }
 }

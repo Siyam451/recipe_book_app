@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:recipebookapp/core/app_strings.dart';
 import 'package:recipebookapp/core/services/api_caller.dart';
 import 'package:recipebookapp/core/services/set_up_network_caller.dart';
 import 'package:recipebookapp/domain/entities/recipes.dart';
@@ -30,7 +31,7 @@ class HomeScreenProvider extends ChangeNotifier{
        final NetworkResponse response =
        await getNetworkcaller().getRequest(
          url:
-         'https://api.spoonacular.com/recipes/complexSearch?apiKey=183b0c5444a14691acf8dbfe884f5f10&query=$category',
+         'https://api.spoonacular.com/recipes/complexSearch?apiKey=${AppStrings.apiKey}&query=$category',
        );
 
        if (response.isSuccess) {

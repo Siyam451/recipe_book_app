@@ -4,6 +4,7 @@ import 'package:recipebookapp/core/app_strings.dart';
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
 import 'package:recipebookapp/presentation/screens/home/widgets/recipecard.dart';
 import 'package:recipebookapp/presentation/screens/home/widgets/weekly_recipe_tile.dart';
+import 'package:recipebookapp/presentation/screens/search-by-name/search_by_name_screen.dart';
 import '../details/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -75,7 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-                  Icon(Icons.search),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=> SearchByNameScreen()));
+                      },
+                      child: Icon(Icons.search)),
                   SizedBox(width: 10),
                   Icon(Icons.notifications_active),
                 ],

@@ -1,8 +1,6 @@
 class AppStrings {
   static const String appName = 'Recipe App';
 
-  // API Constants
-  static const String apiKey = '93ed1c51fb2745339440843df604c23a';
 
   // UI Strings
   static const String categories = 'Categories';
@@ -26,16 +24,14 @@ class AppStrings {
   static const String mins = ' mins';
   static const String servings = ' servings';
 
-  // Constants
-  static const List<String> recipeCategories = [
-    'Italian',
-    'Mexican',
-    'Asian',
-    'American',
-    'Indian',
-  ];
 
-  static const String baseUrl = 'https://api.spoonacular.com/recipes';
+
+
+  static const String apiKey = "183b0c5444a14691acf8dbfe884f5f10";
+  static const String baseUrl = "https://api.spoonacular.com";
+
+
+
   static const String profileImageUrl =
       'https://images.stockcake.com/public/e/7/1/e71ca2d8-cda0-461f-9d70-1e3c0dcb2d3f_large/handsome-man-portrait-stockcake.jpg';
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebookapp/presentation/common/screens/main_navigation_screen.dart';
+import 'package:recipebookapp/presentation/screens/details/provider/recipe_details_provider.dart';
 import 'package:recipebookapp/presentation/screens/home/home_screen.dart';
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
+import 'package:recipebookapp/presentation/screens/search-by-name/provider/search_recipe_provider.dart';
 
 import 'core/app_colors.dart';
 import 'core/app_strings.dart';
@@ -17,8 +19,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_)=> HomeScreenProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> HomeScreenProvider()),
+        ChangeNotifierProvider(create: (_)=> RecipeDetailsProvider()),
+        ChangeNotifierProvider(create: (_)=> SearchRecipeProvider()),
+      ],
       child: MaterialApp(
           title: AppStrings.appName,
           theme: ThemeData(
