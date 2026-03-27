@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipebookapp/presentation/screens/profile/profile_screen.dart';
 import '../../screens/home/home_screen.dart';
 import '../../screens/saved-recipes/saved_recipe_screen.dart';
 import '../app_nav_bar.dart';
@@ -21,7 +22,7 @@ class _MainNavigationScreenState
     Placeholder(),        // Recipes screen (future)
     Placeholder(),        // Add screen (center)
     SavedRecipeScreen(),
-    Placeholder(),        // Profile screen (future)
+    ProfileScreen(),       
   ];
 
   @override

@@ -26,6 +26,7 @@ class _SearchByNameScreenState extends State<SearchByNameScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text("Search Recipe"),
         backgroundColor: AppColors.primary,

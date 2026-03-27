@@ -31,16 +31,12 @@ class _SavedRecipeScreenState
         SavedRecipeManager.savedRecipes;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-
-
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-
-              /// ===== HEADER =====
               Row(
                 children: [
                   IconButton(
@@ -76,7 +72,7 @@ class _SavedRecipeScreenState
 
               const SizedBox(height: 20),
 
-              /// ===== SAVED LIST =====
+
               Expanded(
                 child: savedRecipes.isEmpty
                     ? const Center(
