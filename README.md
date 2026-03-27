@@ -22,40 +22,26 @@
 
 ## 📸 ScreenShots
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c75b137c-8223-444b-b3bb-b7643a159a03" width="220"/>
-  <img src="https://github.com/user-attachments/assets/43b98add-5c4d-4fb5-b3a7-d5cfa6972a77" width="220"/>
-  <img src="https://github.com/user-attachments/assets/6c0678af-8283-4437-bcf6-1f038baa51d8" width="220"/>
-</p>
+### Home Screen
+<img width="227" height="498" alt="Home Screen" src="https://github.com/user-attachments/assets/c75b137c-8223-444b-b3bb-b7643a159a03" />
 
-<p align="center">
-  <b>Home Screen</b> &nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Recipe Details Screen</b> &nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Profile Screen with dark mode</b>
-</p>
+### Recipe Details Screen
+<img width="227" height="498" alt="Recipe Details Screen" src="https://github.com/user-attachments/assets/43b98add-5c4d-4fb5-b3a7-d5cfa6972a77" />
 
-<br/>
+### Profile Screen with dark mode
+<img width="227" height="498" alt="Profile Screen with dark mode" src="https://github.com/user-attachments/assets/6c0678af-8283-4437-bcf6-1f038baa51d8" />
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/8424e7c0-7b8e-4b4f-beb0-e84f8f074fd7" width="220"/>
-  <img src="https://github.com/user-attachments/assets/349993a2-03b8-4ef7-8028-43550230dafa" width="220"/>
-</p>
+### Profile Screen with Light Mode
+<img width="227" height="498" alt="Profile Screen with Light Mode" src="https://github.com/user-attachments/assets/8424e7c0-7b8e-4b4f-beb0-e84f8f074fd7" />
 
-<p align="center">
-  <b>Profile Screen with Light Mode</b> &nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Search By Name of Recipe</b>
-</p>
+### Search By Name of Recipe
+<img width="227" height="498" alt="Search By Name of Recipe" src="https://github.com/user-attachments/assets/349993a2-03b8-4ef7-8028-43550230dafa" />
 
 ---
 
 ## 🎥 Demo Video
 
-<p align="center">
-  <a href="https://drive.google.com/file/d/12KxQrz505Yqa7YBX2XvPu75Hl7HRpD7y/view?usp=sharing">
-    <img src="assets/demo_thumbnail.png" alt="Watch Demo Video" width="600"/>
-  </a>
-</p>
-
+[![Watch Demo Video](assets/demo_thumbnail.png)](https://drive.google.com/file/d/12KxQrz505Yqa7YBX2XvPu75Hl7HRpD7y/view?usp=sharing)
 
    ## 🔮 Future work
 
