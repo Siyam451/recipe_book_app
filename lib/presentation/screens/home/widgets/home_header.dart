@@ -1,9 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/app_strings.dart';
 import '../../search-by-name/search_by_name_screen.dart';
-class HomeHeader extends StatelessWidget {
+
+class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
+
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+
+  String userName = "Guest";
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserName();
+  }
+
+  Future<void> loadUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final name = prefs.getString("user_name");
+
+    setState(() {
+      userName = name ?? "Guest";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +39,26 @@ class HomeHeader extends StatelessWidget {
           radius: 22,
           backgroundImage: NetworkImage(AppStrings.profileImageUrl),
         ),
+
         const SizedBox(width: 10),
 
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Welcome Back!", style: TextStyle(fontSize: 14, color: Colors.grey)),
-            SizedBox(height: 4),
-            Text("Shahrina sultana Liza",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            const Text(
+              "Welcome Back!",
+              style: TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+            const SizedBox(height: 4),
+
+            /// 🔥 DYNAMIC NAME
+            Text(
+              userName,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebookapp/presentation/common/provider/theme_provider.dart';
 import 'package:recipebookapp/presentation/common/screens/main_navigation_screen.dart';
+import 'package:recipebookapp/presentation/screens/auth-screens/login/login_screen.dart';
+import 'package:recipebookapp/presentation/screens/auth-screens/onboarding/onboarding_screen.dart';
 import 'package:recipebookapp/presentation/screens/details/provider/recipe_details_provider.dart';
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
 import 'package:recipebookapp/presentation/screens/search-by-name/provider/search_recipe_provider.dart';
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               themeMode: themeprovider.themeMode,
-            home: MainNavigationScreen()
+            home: OnboardingScreen(),
           );
         }
       ),
