@@ -24,10 +24,13 @@
 
 ### Onboarding Screen
 <img width="227" height="498" alt="Onboarding Screen" src="https://github.com/user-attachments/assets/04433b5b-99ad-42c3-bd45-6dc1fb8a2e79" />
+
 ### Login Screen
 <img width="227" height="498" alt="Login Screen" src="https://github.com/user-attachments/assets/5a836b33-513d-4c09-bdf5-0a456215eb8d" />
+
 ### Register Screen
 <img width="227" height="498" alt="Register Screen" src="https://github.com/user-attachments/assets/3c6636ca-3b9d-4d31-af7a-dd57870d5879" />
+
 ### Home Screen
 <img width="227" height="498" alt="Home Screen" src="https://github.com/user-attachments/assets/c75b137c-8223-444b-b3bb-b7643a159a03" />
 
