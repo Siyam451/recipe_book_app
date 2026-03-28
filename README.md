@@ -54,5 +54,5 @@
 
    ## 🔮 Future work
 
-- 🔐 Add secure user authentication (Login & Registration)
+- 🔐 Add secure user authentication (Login & Registration) (done)
 - ⭐ Recipe rating and review system
