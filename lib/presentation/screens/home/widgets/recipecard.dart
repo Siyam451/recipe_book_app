@@ -39,19 +39,20 @@ class RecipeCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                  BorderRadius.circular(12),
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.star,
-                        size: 14, color: Colors.orange),
-                    const SizedBox(width: 4),
+                    Icon(Icons.star,
+                        size: 14,
+                      color: Theme.of(context).colorScheme.primary,),
+                     SizedBox(width: 4),
                     Text(
                       rating,
-                      style: const TextStyle(
+                      style:  TextStyle(
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 12),
                     ),
                   ],

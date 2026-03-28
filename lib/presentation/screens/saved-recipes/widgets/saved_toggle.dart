@@ -45,7 +45,7 @@ class SavedToggle extends StatelessWidget {
             text,
             style: TextStyle(
               color:
-              isSelected ? Colors.white : Colors.black,
+              isSelected ? Colors.white : Colors.red,
               fontWeight: FontWeight.w500,
             ),
           ),
