@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,21 +19,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordController = TextEditingController();
 
   bool obscurePassword = true;
+  bool isLoading = false;
 
 
   void onRegister() async {
     if (_formKey.currentState!.validate()) {
+      setState(() => isLoading = true);
 
-      final prefs = await SharedPreferences.getInstance();
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
 
-      await prefs.setString(
-        "user_name",
-        "${firstNameController.text} ${lastNameController.text}",
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Account Created 🎉")),
+        );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Registered")),
-      );
+        Navigator.pop(context);
+
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? "Signup failed")),
+        );
+      }
+
+      setState(() => isLoading = false);
     }
   }
   @override
@@ -115,12 +127,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       const SizedBox(height: 20),
 
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: onRegister,
-                          child: const Text("Sign Up"),
-                        ),
+                      ElevatedButton(
+                        onPressed: isLoading ? null : onRegister,
+                        child: isLoading
+                            ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                            : const Text("Sign Up"),
                       ),
                     ],
                   ),

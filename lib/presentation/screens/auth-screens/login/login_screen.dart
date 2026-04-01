@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:recipebookapp/presentation/common/screens/main_navigation_screen.dart';
 import '../register/register_screen.dart';
@@ -18,13 +19,30 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool obscurePassword = true;
   bool rememberMe = false;
+  bool isLoading = false;
 
-  void onLogin() {
+  void onLogin() async {
     if (_formKey.currentState!.validate()) {
-      Navigator.push(context, MaterialPageRoute(builder: (ctx)=> MainNavigationScreen()));
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login clicked")),
-      );
+      setState(() => isLoading = true);
+
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => MainNavigationScreen()),
+        );
+
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? "Login failed")),
+        );
+      }
+
+      setState(() => isLoading = false);
     }
   }
 
@@ -159,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: onLogin,
+                            onPressed: isLoading ? null : onLogin,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.orange,
                               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -167,7 +185,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            child: const Text("Login"),
+                            child: isLoading
+                                ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
+                            )
+                                : const Text("Login"),
                           ),
                         ),
 

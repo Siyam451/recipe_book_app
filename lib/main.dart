@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebookapp/presentation/common/provider/theme_provider.dart';
@@ -11,7 +12,9 @@ import 'package:recipebookapp/presentation/screens/search-by-name/provider/searc
 import 'core/app_colors.dart';
 import 'core/app_strings.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
