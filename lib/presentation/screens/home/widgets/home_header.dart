@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,12 +23,10 @@ class _HomeHeaderState extends State<HomeHeader> {
   }
 
   Future<void> loadUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final name = prefs.getString("user_name");
+    final user = FirebaseAuth.instance.currentUser;
 
     setState(() {
-      userName = name ?? "Guest";
+      userName = user?.displayName ?? "Guest";
     });
   }
 
@@ -51,7 +50,6 @@ class _HomeHeaderState extends State<HomeHeader> {
             ),
             const SizedBox(height: 4),
 
-            /// 🔥 DYNAMIC NAME
             Text(
               userName,
               style: const TextStyle(

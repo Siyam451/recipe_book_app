@@ -24,13 +24,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void onRegister() async {
     if (_formKey.currentState!.validate()) {
-      setState(() => isLoading = true);
-
       try {
+        final userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
+
+        await userCredential.user!.updateDisplayName(
+          "${firstNameController.text} ${lastNameController.text}",
+        );
+
+        await userCredential.user!.reload();
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Account Created 🎉")),
@@ -43,8 +48,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           SnackBar(content: Text(e.message ?? "Signup failed")),
         );
       }
-
-      setState(() => isLoading = false);
     }
   }
   @override
