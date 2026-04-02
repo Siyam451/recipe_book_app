@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../domain/entities/recipes.dart';
 import '../../details/details_screen.dart';
 import '../../saved-recipes/save_recipe_manager.dart';
+import '../providers/home_screen_provider.dart';
 
 class WeeklyRecipeTile extends StatefulWidget {
   //
@@ -22,10 +24,10 @@ class _WeeklyRecipeTileState
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<HomeScreenProvider>();
     final recipe = widget.recipe;
 
-    final isSaved =
-    SavedRecipeManager.isSaved(recipe);
+    final isSaved = provider.favoriteIds.contains(recipe.id.toString());
 
     return Column(
       children: [
@@ -111,9 +113,7 @@ class _WeeklyRecipeTileState
               isSaved ? Colors.orange : Colors.grey,
             ),
             onPressed: () {
-              setState(() {
-                SavedRecipeManager.toggleRecipe(recipe);
-              });
+              provider.toggleFavorite(recipe.id.toString());
             },
           ),
         ),

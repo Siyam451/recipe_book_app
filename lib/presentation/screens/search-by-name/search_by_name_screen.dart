@@ -135,12 +135,12 @@ class _SearchByNameScreenState extends State<SearchByNameScreen> {
 
                               /// TITLE
                               Padding(
-                                padding: const EdgeInsets.all(8),
+                                padding:  EdgeInsets.all(8),
                                 child: Text(
                                   recipe.title,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),

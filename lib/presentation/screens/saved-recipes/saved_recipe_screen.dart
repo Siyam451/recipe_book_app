@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipebookapp/presentation/common/screens/main_navigation_screen.dart';
-import '../../../domain/entities/recipes.dart';
-
+import '../home/providers/home_screen_provider.dart';
 import '../home/widgets/weekly_recipe_tile.dart';
-import 'save_recipe_manager.dart';
+
 import 'widgets/saved_toggle.dart';
 
 class SavedRecipeScreen extends StatefulWidget {
@@ -24,11 +24,14 @@ class _SavedRecipeScreenState
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
-    final List<Recipe> savedRecipes =
-        SavedRecipeManager.savedRecipes;
+    final provider = context.watch<HomeScreenProvider>();
+
+    final savedRecipes = provider.categoryrecipe
+        .where((recipe) =>
+        provider.favoriteIds.contains(recipe.id.toString()))
+        .toList();
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -40,7 +43,12 @@ class _SavedRecipeScreenState
               Row(
                 children: [
                   IconButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (ctx)=>MainNavigationScreen())),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => MainNavigationScreen(),
+                      ),
+                    ),
                     icon: const Icon(Icons.arrow_back),
                   ),
                   const Expanded(
@@ -60,7 +68,6 @@ class _SavedRecipeScreenState
 
               const SizedBox(height: 20),
 
-              /// ===== TOGGLE =====
               SavedToggle(
                 selectedIndex: selectedTab,
                 onChanged: (index) {
@@ -72,14 +79,12 @@ class _SavedRecipeScreenState
 
               const SizedBox(height: 20),
 
-
               Expanded(
                 child: savedRecipes.isEmpty
                     ? const Center(
                   child: Text(
                     "No saved recipes yet.",
-                    style:
-                    TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.grey),
                   ),
                 )
                     : ListView.builder(

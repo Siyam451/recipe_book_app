@@ -6,9 +6,9 @@ import '../../details/details_screen.dart';
 import '../providers/home_screen_provider.dart';
 class RecipeList extends StatelessWidget {
   const RecipeList({super.key});
-
   @override
   Widget build(BuildContext context) {
+
     final provider = context.watch<HomeScreenProvider>();
 
     return Column(
@@ -41,6 +41,11 @@ class RecipeList extends StatelessWidget {
                     rating: recipe.rating.toString(),
                     title: recipe.title,
                     author: recipe.author,
+                    id: recipe.id.toString(),
+                    isSaved: provider.favoriteIds.contains(recipe.id.toString()),
+                    onToggle: (id) {
+                      provider.toggleFavorite(id);
+                    },
                   ),
                 ),
               );

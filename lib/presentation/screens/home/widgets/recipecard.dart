@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 class RecipeCard extends StatelessWidget {
+  final String id;
   final String image;
   final String rating;
   final String title;
   final String author;
 
+  final bool isSaved;
+  final Function(String) onToggle;
+
   const RecipeCard({
     super.key,
+    required this.id,
     required this.image,
     required this.rating,
     required this.title,
     required this.author,
+    required this.isSaved,
+    required this.onToggle,
   });
 
   @override
@@ -31,13 +38,13 @@ class RecipeCard extends StatelessWidget {
               ),
             ),
 
-            /// Rating Badge
+
             Positioned(
               top: 8,
               left: 8,
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 8, vertical: 4),
+                padding:
+                const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(12),
@@ -46,39 +53,52 @@ class RecipeCard extends StatelessWidget {
                   children: [
                     Icon(Icons.star,
                         size: 14,
-                      color: Theme.of(context).colorScheme.primary,),
-                     SizedBox(width: 4),
+                        color:
+                        Theme.of(context).colorScheme.primary),
+                    const SizedBox(width: 4),
                     Text(
                       rating,
-                      style:  TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 12),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
 
-            /// Bookmark Icon
-            const Positioned(
+
+            Positioned(
               top: 8,
               right: 8,
-              child: Icon(Icons.bookmark_border,
-                  color: Colors.white),
+              child: GestureDetector(
+                onTap: () => onToggle(id),
+                child: Icon(
+                  isSaved
+                      ? Icons.bookmark
+                      : Icons.bookmark_border,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),
+
         const SizedBox(height: 8),
+
         Text(
           title,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
+
         const SizedBox(height: 4),
+
         Text(
           "By: $author",
           maxLines: 1,

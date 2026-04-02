@@ -17,8 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
-      context.read<HomeScreenProvider>().fetchcategoryRecipes("All");
+    Future.microtask(() async {
+      final provider = context.read<HomeScreenProvider>();
+
+      await provider.fetchcategoryRecipes("All"); // wait
+      await provider.loadFavorites();             // then load
     });
   }
 

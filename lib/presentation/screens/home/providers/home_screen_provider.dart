@@ -5,6 +5,7 @@ import 'package:recipebookapp/core/app_strings.dart';
 import 'package:recipebookapp/core/services/api_caller.dart';
 import 'package:recipebookapp/core/services/set_up_network_caller.dart';
 import 'package:recipebookapp/domain/entities/recipes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../data/models/recipe_model.dart';
 
@@ -20,6 +21,9 @@ class HomeScreenProvider extends ChangeNotifier{
 
    List<Recipe> _searchRecipes = [];
    List<Recipe> get searchrecipes => _searchRecipes;
+
+   List<String> _favoriteIds = [];
+   List<String> get favoriteIds => _favoriteIds;
 
    Future<bool> fetchcategoryRecipes(String category) async {
      bool isSuccess = false;
@@ -56,6 +60,31 @@ class HomeScreenProvider extends ChangeNotifier{
      notifyListeners();
 
      return isSuccess;
+   }
+
+   Future<void> loadFavorites() async {
+     final prefs = await SharedPreferences.getInstance();
+     _favoriteIds = prefs.getStringList("favorites") ?? [];
+
+     print("Loaded favorites: $_favoriteIds");
+
+     notifyListeners();
+   }
+
+   Future<void> toggleFavorite(String id) async {
+     final prefs = await SharedPreferences.getInstance();
+
+     if (_favoriteIds.contains(id)) {
+       _favoriteIds.remove(id);
+     } else {
+       _favoriteIds.add(id);
+     }
+
+     await prefs.setStringList("favorites", _favoriteIds);
+
+     print("Saved favorites: $_favoriteIds");
+
+     notifyListeners();
    }
 
 }
