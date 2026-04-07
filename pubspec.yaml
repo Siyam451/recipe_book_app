@@ -43,6 +43,8 @@ dependencies:
   flutter_sslcommerz: ^3.0.1
   firebase_core: ^4.6.0
   firebase_auth: ^6.3.0
+  firebase_messaging: ^16.1.3
+  flutter_local_notifications: ^17.0.0
 
 dev_dependencies:
   flutter_test:

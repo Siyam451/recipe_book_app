@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recipebookapp/app/fcm_services.dart';
 import 'package:recipebookapp/presentation/common/provider/theme_provider.dart';
 import 'package:recipebookapp/presentation/common/screens/main_navigation_screen.dart';
 import 'package:recipebookapp/presentation/screens/auth-screens/auth_gate.dart';
@@ -10,12 +11,15 @@ import 'package:recipebookapp/presentation/screens/details/provider/recipe_detai
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
 import 'package:recipebookapp/presentation/screens/search-by-name/provider/search_recipe_provider.dart';
 
+import 'app/set_up_local_notification.dart';
 import 'core/app_colors.dart';
 import 'core/app_strings.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await setupLocalNotifications();
+  FCMService.initialize(); //notification
   runApp(const MyApp());
 }
 
