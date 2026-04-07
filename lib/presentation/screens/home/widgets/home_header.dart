@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,11 +17,39 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
 
   String userName = "Guest";
+  bool notificationsEnabled = true;
 
   @override
   void initState() {
     super.initState();
     loadUserName();
+    loadNotificationPreference();
+  }
+
+  Future<void> loadNotificationPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      notificationsEnabled = prefs.getBool("notifications_enabled") ?? true;
+    });
+  }
+
+  Future<void> toggleNotifications() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      notificationsEnabled = !notificationsEnabled;
+    });
+
+    await prefs.setBool("notifications_enabled", notificationsEnabled);
+
+    if (notificationsEnabled) {
+      await FirebaseMessaging.instance.subscribeToTopic("all_users");
+      print("Subscribed to notifications");
+    } else {
+      await FirebaseMessaging.instance.unsubscribeFromTopic("all_users");
+      print("Unsubscribed from notifications");
+    }
   }
 
   Future<void> logout() async {
@@ -90,7 +119,15 @@ class _HomeHeaderState extends State<HomeHeader> {
 
         Row(
           children: [
-            const Icon(Icons.notifications_active),
+            IconButton(
+              icon: Icon(
+                notificationsEnabled
+                    ? Icons.notifications_active
+                    : Icons.notifications_off,
+                color: notificationsEnabled ? Colors.green : Colors.grey,
+              ),
+              onPressed: toggleNotifications,
+            ),
 
             const SizedBox(width: 8),
 
