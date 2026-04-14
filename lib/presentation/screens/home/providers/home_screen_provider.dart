@@ -12,6 +12,7 @@ import '../../../../data/models/recipe_model.dart';
 class HomeScreenProvider extends ChangeNotifier{
    bool _homescreenLoading = false;
    bool get homescreenloading => _homescreenLoading;
+   String? _userId;
 
    String? _errorMassege ;
    String? get errorMassege  => _errorMassege;
@@ -64,9 +65,10 @@ class HomeScreenProvider extends ChangeNotifier{
 
    Future<void> loadFavorites() async {
      final prefs = await SharedPreferences.getInstance();
-     _favoriteIds = prefs.getStringList("favorites") ?? [];
 
-     print("Loaded favorites: $_favoriteIds");
+     if (_userId == null) return;
+
+     _favoriteIds = prefs.getStringList("favorites_$_userId") ?? [];
 
      notifyListeners();
    }
@@ -74,17 +76,31 @@ class HomeScreenProvider extends ChangeNotifier{
    Future<void> toggleFavorite(String id) async {
      final prefs = await SharedPreferences.getInstance();
 
+     if (_userId == null) return;
+
      if (_favoriteIds.contains(id)) {
        _favoriteIds.remove(id);
      } else {
        _favoriteIds.add(id);
      }
 
-     await prefs.setStringList("favorites", _favoriteIds);
-
-     print("Saved favorites: $_favoriteIds");
+     await prefs.setStringList("favorites_$_userId", _favoriteIds);
 
      notifyListeners();
+   }
+
+   void clearData() {
+     _favoriteIds = [];
+     _categoryRecipes = [];
+     _searchRecipes = [];
+     _errorMassege = null;
+     _homescreenLoading = false;
+
+     notifyListeners();
+   }
+
+   void setUser(String userId) {
+     _userId = userId;
    }
 
 }

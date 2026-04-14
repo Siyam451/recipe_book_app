@@ -9,6 +9,7 @@ import 'package:recipebookapp/presentation/screens/auth-screens/login/login_scre
 import 'package:recipebookapp/presentation/screens/auth-screens/onboarding/onboarding_screen.dart';
 import 'package:recipebookapp/presentation/screens/details/provider/recipe_details_provider.dart';
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
+import 'package:recipebookapp/presentation/screens/review-screen/provider/review_provider.dart';
 import 'package:recipebookapp/presentation/screens/search-by-name/provider/search_recipe_provider.dart';
 
 import 'app/set_up_local_notification.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> RecipeDetailsProvider()),
         ChangeNotifierProvider(create: (_)=> SearchRecipeProvider()),
         ChangeNotifierProvider(create: (_)=> ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ReviewProvider()),
 
       ],
       child: Consumer<ThemeProvider>(

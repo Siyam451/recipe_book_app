@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:recipebookapp/presentation/screens/home/providers/home_screen_provider.dart';
 import 'package:recipebookapp/presentation/screens/home/widgets/category_list.dart';
 import 'package:recipebookapp/presentation/screens/home/widgets/home_content.dart';
@@ -12,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -20,8 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.microtask(() async {
       final provider = context.read<HomeScreenProvider>();
 
-      await provider.fetchcategoryRecipes("All"); // wait
-      await provider.loadFavorites();             // then load
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        provider.setUser(user.uid);
+        await provider.loadFavorites();
+      }
+
+      await provider.fetchcategoryRecipes("All");
     });
   }
 

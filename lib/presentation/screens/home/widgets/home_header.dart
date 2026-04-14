@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/app_strings.dart';
 import '../../auth-screens/onboarding/onboarding_screen.dart';
 import '../../search-by-name/search_by_name_screen.dart';
+import '../providers/home_screen_provider.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -51,14 +53,18 @@ class _HomeHeaderState extends State<HomeHeader> {
       print("Unsubscribed from notifications");
     }
   }
-
-  Future<void> logout() async {
+  Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
 
     final prefs = await SharedPreferences.getInstance();
 
 
     await prefs.remove("access-token");
+
+    final homeProvider =
+    Provider.of<HomeScreenProvider>(context, listen: false);
+
+    homeProvider.clearData();
 
     Navigator.pushAndRemoveUntil(
       context,
@@ -133,7 +139,9 @@ class _HomeHeaderState extends State<HomeHeader> {
 
             IconButton(
               icon: const Icon(Icons.logout, color: Colors.red),
-              onPressed: logout,
+              onPressed: (){
+                logout(context);
+              }
             ),
           ],
         )

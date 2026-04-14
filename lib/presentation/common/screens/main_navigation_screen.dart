@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipebookapp/presentation/screens/profile/profile_screen.dart';
+import 'package:recipebookapp/presentation/screens/review-screen/review_screen.dart';
 import '../../screens/home/home_screen.dart';
 import '../../screens/saved-recipes/saved_recipe_screen.dart';
 import '../app_nav_bar.dart';
@@ -17,12 +18,12 @@ class _MainNavigationScreenState
 
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    Placeholder(),        // Recipes screen (future)
-    Placeholder(),        // Add screen (center)
-    SavedRecipeScreen(),
-    ProfileScreen(),       
+  final List<Widget> _screens = [
+    HomeScreen(),          // 0
+    Placeholder(),         // 1
+    Placeholder(),         // 2 (center add)
+    SavedRecipeScreen(),   // 3
+    ProfileScreen(),       // 4
   ];
 
   @override

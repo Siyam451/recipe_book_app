@@ -56,8 +56,9 @@ class _RecipeDetailsScreenState
                   ingredients: details.ingredients,
                   time: details.readyInMinutes,
                   servings: details.servings,
-                  description: details.summary
-                      .replaceAll(RegExp(r'<[^>]*>'), ''),
+                  description: details.summary.replaceAll(RegExp(r'<[^>]*>'), ''),
+                  recipeId: recipe.id.toString(),
+                  recipeImage: recipe.image,
                 ),
               ],
             ),

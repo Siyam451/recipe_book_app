@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:recipebookapp/presentation/screens/details/widgets/ingredient_items.dart';
+import 'package:recipebookapp/presentation/screens/details/widgets/review_sections.dart';
+
 import 'recipe_rating.dart';
 import 'recipe_meta.dart';
 import 'recipe_description.dart';
-import 'watch_button.dart';
 
 class RecipeInfoSection extends StatelessWidget {
   final String title;
@@ -12,6 +14,8 @@ class RecipeInfoSection extends StatelessWidget {
   final int time;
   final int servings;
   final String description;
+  final String recipeId;
+  final String recipeImage;
 
   const RecipeInfoSection({
     super.key,
@@ -21,6 +25,8 @@ class RecipeInfoSection extends StatelessWidget {
     required this.time,
     required this.servings,
     required this.description,
+    required this.recipeId,
+    required this.recipeImage,
   });
 
   @override
@@ -39,7 +45,7 @@ class RecipeInfoSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          /// Title + Rating
+
           Row(
             children: [
               Expanded(
@@ -56,7 +62,7 @@ class RecipeInfoSection extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          /// Ingredients
+
           Text(
             "Ingredients",
             style: theme.textTheme.titleMedium?.copyWith(
@@ -75,8 +81,7 @@ class RecipeInfoSection extends StatelessWidget {
                 final ingredient = ingredients[index];
                 return IngredientItem(
                   name: ingredient.name,
-                  quantity:
-                  "${ingredient.amount} ${ingredient.unit}",
+                  quantity: "${ingredient.amount} ${ingredient.unit}",
                 );
               },
             ),
@@ -84,17 +89,22 @@ class RecipeInfoSection extends StatelessWidget {
 
           const SizedBox(height: 25),
 
+
           RecipeMeta(time: time, servings: servings),
-
           const SizedBox(height: 15),
-
           RecipeDescription(description: description),
-
           const SizedBox(height: 30),
 
-          const WatchButton(),
+
+          const SizedBox(height: 30),
+          ReviewsSection(
+            recipeId: recipeId,
+            recipeImage: recipeImage,
+            recipeTitle: title,
+          ),
         ],
       ),
     );
   }
 }
+
